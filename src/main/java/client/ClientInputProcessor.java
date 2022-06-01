@@ -9,14 +9,14 @@ public class ClientInputProcessor {
     }
 
     public void printIndicateServices() {
-        System.out.println("Enter your services (vertices), separated by commas (','):");
+        System.out.println("Enter your services (vertices), separated by commas (,):");
     }
 
     public void printIndicateEdges() {
-        System.out.println("Enter edges by services using arrow ('>'), separated by commas (','):");
+        System.out.println("Enter edges by services using arrow (>), separated by commas (,):");
     }
 
     public void printIndicateServicesReplicas() {
-        System.out.println("Enter service's replicas (if exists), separated by commas (','):");
+        System.out.println("Enter service's replicas (if exists) with (') iterating, separated by commas (,):");
     }
 }

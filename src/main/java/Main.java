@@ -21,13 +21,13 @@ public class Main {
         clientInput.printIndicateServices();
         List<String> vertices = Arrays.asList(scanner.nextLine().split(","));
 
-//        clientInput.printIndicateServicesReplicas();
-//        List<String> replicasVertices = Arrays.asList(scanner.nextLine().split(","));
+        clientInput.printIndicateServicesReplicas();
+        List<String> replicas = Arrays.asList(scanner.nextLine().split(","));
 
         clientInput.printIndicateEdges();
         List<String> edges = Arrays.asList(scanner.nextLine().split(","));
 
-        DirectedGraph<String, DefaultEdge> graph = graphSource.createGraph(vertices, edges);
+        DirectedGraph<String, DefaultEdge> graph = graphSource.createGraph(vertices, edges, replicas);
         graphImageSource.createGraphImage(graph);
     }
 }
