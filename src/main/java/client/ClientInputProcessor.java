@@ -17,6 +17,6 @@ public class ClientInputProcessor {
     }
 
     public void printIndicateServicesReplicas() {
-        System.out.println("Enter service's replicas (if exists) with (') iterating, separated by commas (,):");
+        System.out.println("Enter service's replicas (if not exists press 'Enter') with (') iterating, separated by commas (,):");
     }
 }

@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4996178-70fc-45b3-8352-f425d3d66717" name="Changes" comment="added graph visualise">
+    <list default="true" id="b4996178-70fc-45b3-8352-f425d3d66717" name="Changes" comment="added replicas in graph visualise">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/calculate/MetricsCalculate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/calculate/MetricsCalculate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/client/ClientInputProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/ClientInputProcessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/graph/GraphImageSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graph/GraphImageSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/graph/GraphSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/graph/GraphSource.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,6 +112,7 @@
       <workItem from="1654012506247" duration="9903000" />
       <workItem from="1654101499780" duration="930000" />
       <workItem from="1654103822968" duration="6189000" />
+      <workItem from="1654196718489" duration="4048000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1653852417340</created>

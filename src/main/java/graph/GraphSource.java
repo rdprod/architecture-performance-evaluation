@@ -5,6 +5,7 @@ import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.DefaultDirectedGraph;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GraphSource {
     public DirectedGraph<String, DefaultEdge> createGraph(List<String> vertices,
@@ -12,7 +13,9 @@ public class GraphSource {
                                                           List<String> replicas) {
         var graph = new DefaultDirectedGraph<String, DefaultEdge>(DefaultEdge.class);
         vertices.forEach(graph::addVertex);
-        replicas.forEach(graph::addVertex);
+        if (Objects.nonNull(replicas)) {
+            replicas.forEach(graph::addVertex);
+        }
         addEdgesInGraph(graph, replicas, edges);
 
         return graph;

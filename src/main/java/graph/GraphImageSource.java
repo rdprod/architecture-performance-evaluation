@@ -15,7 +15,7 @@ import java.io.IOException;
 
 public class GraphImageSource {
     public void createGraphImage(Graph<String, DefaultEdge> graph) throws IOException {
-        JGraphXAdapter<String, DefaultEdge> graphAdapter =
+        var graphAdapter =
                 new JGraphXAdapter<>(graph);
         mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
         layout.execute(graphAdapter.getDefaultParent());
