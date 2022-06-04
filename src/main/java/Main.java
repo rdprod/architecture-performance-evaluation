@@ -1,5 +1,6 @@
+import calculate.EvaluationCalculate;
 import calculate.MetricsCalculate;
-import client.ClientInputProcessor;
+import client.ClientMessagesSender;
 import graph.GraphImageSource;
 import graph.GraphSource;
 import org.jgraph.graph.DefaultEdge;
@@ -14,28 +15,39 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         var scanner = new Scanner(System.in);
-        var clientInput = new ClientInputProcessor();
+        var clientMessagesSender = new ClientMessagesSender();
         var graphSource = new GraphSource();
         var graphImageSource = new GraphImageSource();
-        var metricsCalculate = new MetricsCalculate();
+        var evaluationCalculate = new EvaluationCalculate();
 
-        clientInput.printGreetings();
+        clientMessagesSender.printGreetings();
 
-        clientInput.printIndicateServices();
+        clientMessagesSender.printIndicateServices();
         List<String> vertices = Arrays.asList(scanner.nextLine().split(","));
 
-        clientInput.printIndicateServicesReplicas();
+        clientMessagesSender.printIndicateServicesReplicas();
         String replicasString = scanner.nextLine();
         List<String> replicas = !replicasString.isBlank() ?
-                Arrays.asList(scanner.nextLine().split(",")) : Collections.emptyList();
+                Arrays.asList(replicasString.split(",")) : Collections.emptyList();
 
-        clientInput.printIndicateEdges();
+        clientMessagesSender.printIndicateEdges();
         List<String> edges = Arrays.asList(scanner.nextLine().split(","));
 
-        System.out.println("Final architecture performance evaluation = "
-                + metricsCalculate.getCommonEvaluation(Collections.emptyList()));
+        clientMessagesSender.printIndicateExpectedRps();
+        int appExpectedRps = scanner.nextInt();
 
         DirectedGraph<String, DefaultEdge> graph = graphSource.createGraph(vertices, edges, replicas);
         graphImageSource.createGraphImage(graph);
+
+        var metricsCalculate = new MetricsCalculate(graph);
+
+        double throughputMetricValue = metricsCalculate.calculateThroughput();
+        double faultToleranceMetricValue = metricsCalculate.calculateFaultTolerance();
+        double serviceInteractionMetricValue = metricsCalculate.calculateServiceInteraction(appExpectedRps);
+
+        double evaluation = evaluationCalculate.getCommonEvaluation
+                (List.of(throughputMetricValue, faultToleranceMetricValue, serviceInteractionMetricValue));
+
+        clientMessagesSender.printResult(evaluation);
     }
 }

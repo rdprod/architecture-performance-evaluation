@@ -2,30 +2,52 @@ package calculate;
 
 import org.jgraph.graph.DefaultEdge;
 import org.jgrapht.DirectedGraph;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 
-import java.util.List;
+import java.util.Set;
 
 public class MetricsCalculate {
 
-    public double getCommonEvaluation(List<Double> metrics) {
-        return metrics
-                .stream()
-                .reduce(Double::sum).orElse(0.0)/3;
+    private final DirectedGraph<String, DefaultEdge> graph;
+    private final Set<String> vertices;
+
+    public MetricsCalculate(DirectedGraph<String, DefaultEdge> graph) {
+        this.graph = graph;
+        this.vertices = graph.vertexSet();
     }
 
-    private double calculateThroughput(DirectedGraph<String, DefaultEdge> graph) {
-        return 0.0;
+    public double calculateThroughput() {
+        var searchPathHelper = new DijkstraShortestPath<>(graph);
+        String gateWay = vertices.stream().findFirst().orElse(null);
+
+        double verticesPathWeightSum = vertices.stream()
+                .mapToDouble(v -> searchPathHelper.getPathWeight(gateWay, v))
+                .sum();
+        double metricValue = verticesPathWeightSum / (graph.edgeSet().size() * vertices.size());
+
+        return normalizeValueByFunction(metricValue);
     }
 
-    private double calculateFaultTolerance(DirectedGraph<String, DefaultEdge> graph) {
-        return 0.0;
+    public double calculateFaultTolerance() {
+        int verticesDegreeSum = vertices.stream()
+                .mapToInt(graph::inDegreeOf)
+                .sum();
+        double metricValue = (double) verticesDegreeSum / vertices.size();
+
+        return normalizeValueByFunction(metricValue);
     }
 
-    private double calculateServiceInteraction(DirectedGraph<String, DefaultEdge> graph) {
-        return 0.0;
+    public double calculateServiceInteraction(int expectedRps) {
+        int verticesPathCountSum = vertices.stream()
+                .mapToInt(v -> graph.inDegreeOf(v) == 0 ? 1 : graph.inDegreeOf(v))
+                .sum();
+        double verticesPathCountAverage = (double) verticesPathCountSum / vertices.size();
+
+        int defaultRps = 500;
+        return (double) defaultRps / (expectedRps * verticesPathCountAverage);
     }
 
     private double normalizeValueByFunction(double x) {
-        return 1 - x/(x+1);
+        return 1 - x / (x+1);
     }
 }

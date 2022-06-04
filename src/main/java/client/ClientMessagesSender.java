@@ -1,6 +1,6 @@
 package client;
 
-public class ClientInputProcessor {
+public class ClientMessagesSender {
     public void printGreetings() {
         System.out.println("""
                 -----------------------------------
@@ -18,5 +18,15 @@ public class ClientInputProcessor {
 
     public void printIndicateServicesReplicas() {
         System.out.println("Enter service's replicas (if not exists press 'Enter') with (') iterating, separated by commas (,):");
+    }
+
+    public void printIndicateExpectedRps() {
+        System.out.println("Enter expected RPS value for your application:");
+    }
+
+    public void printResult(double value) {
+        System.out.println("------------------\n"
+                + "Result value - " + value
+                + "\n------------------");
     }
 }
