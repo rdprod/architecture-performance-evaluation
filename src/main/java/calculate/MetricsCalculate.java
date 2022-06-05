@@ -18,7 +18,9 @@ public class MetricsCalculate {
 
     public double calculateThroughput() {
         var searchPathHelper = new DijkstraShortestPath<>(graph);
-        String gateWay = vertices.stream().findFirst().orElse(null);
+        String gateWay = vertices.stream()
+                .findFirst()
+                .orElse(null);
 
         double verticesPathWeightSum = vertices.stream()
                 .filter(v -> !v.contains("'"))

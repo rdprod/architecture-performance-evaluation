@@ -12,6 +12,9 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <jgrapht.version>1.0.1</jgrapht.version>
+        <junit.version>4.13.1</junit.version>
+        <maven.jar.version>3.1.0</maven.jar.version>
+        <maven.shade.version>3.2.4</maven.shade.version>
     </properties>
 
     <dependencies>
@@ -34,7 +37,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -44,7 +47,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven.jar.version}</version>
                 <configuration>
                     <archive>
                         <manifest>
@@ -58,7 +61,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>${maven.shade.version}</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
