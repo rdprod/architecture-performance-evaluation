@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class GraphImageSource {
-    public void createGraphImage(Graph<String, DefaultEdge> graph) throws IOException {
+    public void createGraphImage(Graph<String, DefaultEdge> graph, String imagePath) throws IOException {
         var graphAdapter =
                 new JGraphXAdapter<>(graph);
         mxIGraphLayout layout = new mxCircleLayout(graphAdapter);
@@ -22,7 +22,7 @@ public class GraphImageSource {
 
         BufferedImage image =
                 mxCellRenderer.createBufferedImage(graphAdapter, null, 2, Color.WHITE, true, null);
-        File imgFile = new File("./target/graph.png");
+        File imgFile = new File(imagePath);
         ImageIO.write(image, "PNG", imgFile);
     }
 }

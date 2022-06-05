@@ -37,7 +37,7 @@ public class Main {
         int appExpectedRps = scanner.nextInt();
 
         DirectedGraph<String, DefaultEdge> graph = graphSource.createGraph(vertices, edges, replicas);
-        graphImageSource.createGraphImage(graph);
+        graphImageSource.createGraphImage(graph, args[0]);
 
         var metricsCalculate = new MetricsCalculate(graph);
 

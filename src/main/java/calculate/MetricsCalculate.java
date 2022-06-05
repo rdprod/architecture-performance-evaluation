@@ -44,11 +44,16 @@ public class MetricsCalculate {
                 .sum();
         double verticesPathCountAverage = (double) verticesPathCountSum / vertices.size();
         int defaultRps = 500;
+        double result = (double) defaultRps / (expectedRps * verticesPathCountAverage);
 
-        return (double) defaultRps / (expectedRps * verticesPathCountAverage);
+        if (result > 1) {
+            return 1.0;
+        } else {
+            return result;
+        }
     }
 
     private double normalizeValueByFunction(double x) {
-        return 1 - x / (x+1);
+        return 1 - x / (x + 1);
     }
 }
