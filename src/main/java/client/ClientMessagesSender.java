@@ -25,8 +25,10 @@ public class ClientMessagesSender {
     }
 
     public void printResult(double value) {
-        System.out.println("------------------\n"
-                + "Result value - " + value
-                + "\n------------------");
+        System.out.printf("""
+                --------------------
+                Result value =  %.2f
+                --------------------
+                """, value);
     }
 }

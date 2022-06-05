@@ -21,6 +21,7 @@ public class MetricsCalculate {
         String gateWay = vertices.stream().findFirst().orElse(null);
 
         double verticesPathWeightSum = vertices.stream()
+                .filter(v -> !v.contains("'"))
                 .mapToDouble(v -> searchPathHelper.getPathWeight(gateWay, v))
                 .sum();
         double metricValue = verticesPathWeightSum / (graph.edgeSet().size() * vertices.size());
@@ -42,8 +43,8 @@ public class MetricsCalculate {
                 .mapToInt(v -> graph.inDegreeOf(v) == 0 ? 1 : graph.inDegreeOf(v))
                 .sum();
         double verticesPathCountAverage = (double) verticesPathCountSum / vertices.size();
-
         int defaultRps = 500;
+
         return (double) defaultRps / (expectedRps * verticesPathCountAverage);
     }
 
