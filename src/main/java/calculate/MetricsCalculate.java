@@ -17,6 +17,11 @@ public class MetricsCalculate {
     }
 
     public double calculateThroughput() {
+        Set<DefaultEdge> edges = graph.edgeSet();
+        if (vertices.size() <= 1 || edges.size() <= 0) {
+            return normalizeValueByFunction(0.0);
+        }
+
         var searchPathHelper = new DijkstraShortestPath<>(graph);
         String gateWay = vertices.stream()
                 .findFirst()
